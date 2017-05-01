@@ -1,0 +1,144 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="net.eclissi.lucasop.ioboss.fragments.BlankFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/ic_row_place"
+            android:layout_width="52dp"
+            android:layout_height="60dp"
+            android:layout_above="@+id/rvdbID"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/rvname"
+            android:layout_gravity="start"
+            android:src="@drawable/ic_place_black_24dp" />
+
+        <EditText
+            android:id="@+id/wrFenceName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/ic_row_place"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Geo-Fence Name"
+            android:textAlignment="center"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/rvname"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/wrFenceName"
+            android:layout_toEndOf="@+id/ic_row_place"
+            android:text="Name"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/black"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:id="@+id/rvaddress"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_alignParentEnd="@+id/ic_row_place"
+            android:layout_below="@+id/rvname"
+            android:layout_toEndOf="@+id/ic_row_place"
+            android:text="LatLong"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/black"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/rvcoordinate"
+            android:layout_width="fill_parent"
+            android:layout_height="20dp"
+            android:layout_alignParentEnd="@+id/ic_row_place"
+            android:layout_below="@+id/rvaddress"
+            android:layout_toEndOf="@+id/ic_row_place"
+            android:text="coordinate"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/rvzonaID"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_alignParentEnd="@+id/ic_row_place"
+            android:layout_below="@+id/rvcoordinate"
+            android:layout_toEndOf="@+id/ic_row_place"
+            android:text="tipo"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/rvdbID"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentEnd="@+id/ic_row_place"
+            android:layout_alignStart="@+id/rvzonaID"
+            android:layout_below="@+id/rvzonaID"
+            android:text="id db"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/black"
+            android:visibility="invisible" />
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/rvdbID"
+            android:layout_below="@+id/rvdbID"
+            android:text="Location Geo-Fencing mode"
+            android:textAlignment="viewStart"
+            android:textStyle="bold|italic" />
+
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView"
+            android:layout_below="@+id/textView">
+
+            <RadioButton
+                android:id="@+id/radioLdwell"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/radioLout"
+                android:layout_below="@+id/radioLout"
+                android:layout_marginTop="11dp"
+                android:layout_weight="1"
+                android:text="Location Dwell" />
+
+            <RadioButton
+                android:id="@+id/radioLout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/radioLin"
+                android:layout_below="@+id/radioLin"
+                android:layout_marginTop="12dp"
+                android:layout_weight="1"
+                android:text="Location OUT" />
+
+            <RadioButton
+                android:id="@+id/radioLin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/textView"
+                android:layout_below="@+id/textView"
+                android:layout_marginTop="13dp"
+                android:layout_weight="1"
+                android:text="Location IN" />
+        </RadioGroup>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="Settings Menu">
+
+    <PreferenceCategory android:title="General">
+
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:title="Background monitoring"
+            android:key="switch_sync"
+            android:summary="Enable or disable service" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Connection settings"
+        android:key="personal_category">
+
+        <EditTextPreference
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="host name"
+            android:key="host_name"
+            android:summary="example.duckdns.org"
+            android:defaultValue="example.duckdns.org" />
+        <EditTextPreference
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="API password"
+            android:key="api_pass"
+            android:summary="Home Assistant API password" />
+        <EditTextPreference
+            android:defaultValue="Default value"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Entity_id"
+            android:key="entity_id"
+            android:summary="entity" />
+    </PreferenceCategory>
+    <ListPreference
+        android:defaultValue="1"
+        android:title="Bluetooth Device"
+        android:entries="@array/btBounded"
+        android:entryValues="@array/btBounded"
+        android:key="bt_bounded" />
+</PreferenceScreen>

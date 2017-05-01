@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="updateInterval">
+        <item name="1000">Every 1 second</item>
+        <item name="2000">Every 2 seconds</item>
+        <item name="30000">Every 30 seconds</item>
+        <item name="60000">Every 60 seconds</item>
+    </string-array>
+
+    <string-array name="updateIntervalValues">
+        <item name="1000">1000</item>
+        <item name="2000">2000</item>
+        <item name="30000">30000</item>
+        <item name="60000">60000</item>
+    </string-array>
+
+    <string-array name="locationGeofence">
+        <item name="GeoFence IN">IN</item>
+        <item name="GeoFence OUT">OUT</item>
+        <item name="GeoFence DWELL">SWELL</item>
+    </string-array>
+
+    <string-array name="btBound">
+
+    </string-array>
+    <string-array name="btBounded" />
+</resources>
