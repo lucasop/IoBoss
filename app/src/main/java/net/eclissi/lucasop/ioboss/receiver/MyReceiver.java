@@ -11,18 +11,35 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import com.android.volley.VolleyError;
+
 import net.eclissi.lucasop.ioboss.utils.Constants;
+import net.eclissi.lucasop.ioboss.utils.IResult;
 import net.eclissi.lucasop.ioboss.utils.SendPostRequest;
+import net.eclissi.lucasop.ioboss.utils.VolleyService;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import static com.google.android.gms.plus.PlusOneDummyView.TAG;
+
+//import net.eclissi.lucasop.ioboss.utils.VolleyService;
 
 public class MyReceiver extends BroadcastReceiver {
     private static final String PROVIDER_NAME = "net.eclissi.lucasop.ioboss.providers.PrefProvider";
     private static final Uri CONTENT_URI = Uri.parse("content://" + PROVIDER_NAME + "/text");
     private static final String ACTIVITY_NAME = "net.eclissi.lucasop.ioboss.";
 
+    IResult mResultCallback = null;
+    VolleyService mVolleyService;
+
 
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
         Log.i("BlueRemote", "MyReciver");
+
+        initVolleyCallback();
+        mVolleyService = new VolleyService(mResultCallback,context);
 
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
@@ -96,7 +113,19 @@ public class MyReceiver extends BroadcastReceiver {
             if (deviceName.equals(mBTdb)){
                 Log.i("BlueRemote","CON sleeping " +deviceName.toString());
                 String pass = "sleeping";
-                new SendPostRequest().execute(pass,mEntity,mApiPass );
+                //new SendPostRequest().execute(pass,mEntity,mApiPass );
+
+                JSONObject sendObj = null;
+                try {
+                    sendObj = new JSONObject();
+                    sendObj.put("entity_id", mEntity);
+                    sendObj.put("option", pass);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                mVolleyService.postDataVolley("POSTCALL", "https://eclissi.duckdns.org/api/services/input_select/select_option?api_password="+ mApiPass, sendObj);
             }
         }
 
@@ -108,7 +137,19 @@ public class MyReceiver extends BroadcastReceiver {
             if (deviceName.equals(mBTdb)){
                 Log.i("BlueRemote","DISC standby " +deviceName.toString());
                 String pass = "standby";
-                new SendPostRequest().execute(pass,mEntity,mApiPass);
+                //new SendPostRequest().execute(pass,mEntity,mApiPass);
+                JSONObject sendObj = null;
+                try {
+                    sendObj = new JSONObject();
+                    sendObj.put("entity_id", mEntity);
+                    sendObj.put("option", pass);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                mVolleyService.postDataVolley("POSTCALL", "https://eclissi.duckdns.org/api/services/input_select/select_option?api_password="+ mApiPass, sendObj);
+
 
             }
         }
@@ -129,5 +170,21 @@ public class MyReceiver extends BroadcastReceiver {
 
 
 
+    }
+
+    void initVolleyCallback(){
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType,JSONObject response) {
+                Log.d(TAG, "Volley requester " + requestType);
+                Log.d(TAG, "Volley JSON post" + response);
+            }
+
+            @Override
+            public void notifyError(String requestType,VolleyError error) {
+                Log.d(TAG, "Volley requester " + requestType);
+                Log.d(TAG, "Volley JSON post" + "That didn't work!");
+            }
+        };
     }
 }
