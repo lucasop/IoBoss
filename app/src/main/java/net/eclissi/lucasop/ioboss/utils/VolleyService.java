@@ -6,9 +6,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -25,13 +25,18 @@ public class VolleyService {
     }
 
 
+
     public void postDataVolley(final String requestType, String url, JSONObject sendObj){
         try {
             RequestQueue queue = Volley.newRequestQueue(mContext);
 
-            JsonObjectRequest jsonObj = new JsonObjectRequest(url,sendObj, new Response.Listener<JSONObject>() {
+            CustomRequest jsonObj = new CustomRequest(Request.Method.POST, url, sendObj, new Response.Listener< JSONArray>(){
+
+
+            //JsonObjectRequest jsonObj = new JsonObjectRequest(url,sendObj, new Response.Listener<JSONObject>() {
                 @Override
-                public void onResponse(JSONObject response) {
+                //public void onResponse(JSONObject response) {
+                public void onResponse(JSONArray response) {
                     if(mResultCallback != null)
                         mResultCallback.notifySuccess(requestType,response);
                 }
@@ -54,9 +59,11 @@ public class VolleyService {
         try {
             RequestQueue queue = Volley.newRequestQueue(mContext);
 
-            JsonObjectRequest jsonObj = new JsonObjectRequest(Request.Method.GET, url, new Response.Listener<JSONObject>() {
+
+          //  JsonObjectRequest jsonObj = new JsonObjectRequest(Request.Method.GET, url, new Response.Listener<JSONArray>() {
+            CustomRequest jsonObj = new CustomRequest(Request.Method.GET, url, new Response.Listener< JSONArray>(){
                 @Override
-                public void onResponse(JSONObject response) {
+                public void onResponse(JSONArray response) {
                     if(mResultCallback != null)
                         mResultCallback.notifySuccess(requestType, response);
                 }
@@ -68,7 +75,9 @@ public class VolleyService {
                 }
             });
 
+            //jsonObj.setRetryPolicy(new DefaultRetryPolicy(5000,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             queue.add(jsonObj);
+
 
         }catch(Exception e){
 

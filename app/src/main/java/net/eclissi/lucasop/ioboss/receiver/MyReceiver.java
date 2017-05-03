@@ -18,6 +18,7 @@ import net.eclissi.lucasop.ioboss.utils.IResult;
 import net.eclissi.lucasop.ioboss.utils.SendPostRequest;
 import net.eclissi.lucasop.ioboss.utils.VolleyService;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -126,6 +127,7 @@ public class MyReceiver extends BroadcastReceiver {
                 }
 
                 mVolleyService.postDataVolley("POSTCALL", "https://eclissi.duckdns.org/api/services/input_select/select_option?api_password="+ mApiPass, sendObj);
+
             }
         }
 
@@ -175,7 +177,7 @@ public class MyReceiver extends BroadcastReceiver {
     void initVolleyCallback(){
         mResultCallback = new IResult() {
             @Override
-            public void notifySuccess(String requestType,JSONObject response) {
+            public void notifySuccess(String requestType,JSONArray response) {
                 Log.d(TAG, "Volley requester " + requestType);
                 Log.d(TAG, "Volley JSON post" + response);
             }
