@@ -5,6 +5,7 @@ import android.app.Service;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
@@ -13,8 +14,8 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.ActivityRecognition;
 
-import net.eclissi.lucasop.ioboss.utils.Constants;
 import net.eclissi.lucasop.ioboss.receiver.MyReceiver;
+import net.eclissi.lucasop.ioboss.utils.Constants;
 
 /**
  * lucasop 15/01/17
@@ -50,6 +51,9 @@ public class ARService extends Service implements GoogleApiClient.ConnectionCall
             .build();
         mApiClient.connect();
 
+        Log.i("BlueRemote", "Inizializza Database Helper Sync");
+
+
         Log.i("BlueRemote", "Servizio avviato");
         mBluetoothEventReceiver = new MyReceiver();
 
@@ -57,6 +61,10 @@ public class ARService extends Service implements GoogleApiClient.ConnectionCall
         filter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
         filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
         filter.addAction(Constants.INTENT_ACTION);
+
+        // aggiungo filtro connettività WIFI | Mobile
+        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+
         getApplicationContext().registerReceiver(mBluetoothEventReceiver, filter);
         Log.i("BlueRemote", "Filtro creato");
 

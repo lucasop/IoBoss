@@ -26,7 +26,7 @@ public class VolleyService {
 
 
 
-    public void postDataVolley(final String requestType, String url, JSONObject sendObj){
+    public void postDataVolley(final String requestType, String url, JSONObject sendObj, final long dbID){
         try {
             RequestQueue queue = Volley.newRequestQueue(mContext);
 
@@ -38,13 +38,13 @@ public class VolleyService {
                 //public void onResponse(JSONObject response) {
                 public void onResponse(JSONArray response) {
                     if(mResultCallback != null)
-                        mResultCallback.notifySuccess(requestType,response);
+                        mResultCallback.notifySuccess(requestType,response,dbID);
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     if(mResultCallback != null)
-                        mResultCallback.notifyError(requestType,error);
+                        mResultCallback.notifyError(requestType,error,dbID);
                 }
             });
 
@@ -55,7 +55,7 @@ public class VolleyService {
         }
     }
 
-    public void getDataVolley(final String requestType, String url){
+    public void getDataVolley(final String requestType, String url, final long idDB){
         try {
             RequestQueue queue = Volley.newRequestQueue(mContext);
 
@@ -65,13 +65,13 @@ public class VolleyService {
                 @Override
                 public void onResponse(JSONArray response) {
                     if(mResultCallback != null)
-                        mResultCallback.notifySuccess(requestType, response);
+                        mResultCallback.notifySuccess(requestType, response, idDB);
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     if(mResultCallback != null)
-                        mResultCallback.notifyError(requestType, error);
+                        mResultCallback.notifyError(requestType, error, idDB);
                 }
             });
 

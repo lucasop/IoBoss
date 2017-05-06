@@ -20,10 +20,11 @@ public final class Util {
 
     private Util(){}
 
-    public static void mSendBroadcast( Context context, String ActivityRecognized ){
+    public static void mSendBroadcast( Context context, String ActivityRecognized , int ActivityConfidenza){
         Intent broadcastIntent = new Intent();
         broadcastIntent.setAction(Constants.INTENT_ACTION);
-        broadcastIntent.putExtra(Constants.INTENT_EXTRA, ActivityRecognized);
+        broadcastIntent.putExtra(Constants.EXTRA_OPTION, ActivityRecognized);
+        broadcastIntent.putExtra(Constants.AR_EXTRA_CONFIDENZA, ActivityConfidenza);
         context.sendBroadcast(broadcastIntent);
     }
 

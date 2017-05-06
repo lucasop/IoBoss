@@ -44,7 +44,7 @@ public class ActivityRecognizedService extends IntentService {
                     Log.e( "ActivityRecogition", mActivity + ": " + activity.getConfidence() +" type: "+ activity.getType() + " old: "+ Util.oldRecognition + " check : " + !Util.oldRecognition.equals(mActivity) );
                     if( (!Util.oldRecognition.equals(mActivity)) && (activity.getConfidence() >= 50)) {
                         Util.mSendNotification(getApplicationContext(),mActivity);
-                        Util.mSendBroadcast(getApplicationContext(),mActivity);
+                        Util.mSendBroadcast(getApplicationContext(),mActivity,activity.getConfidence() );
                         Util.oldRecognition = mActivity;
                     }
                     break;
@@ -54,7 +54,7 @@ public class ActivityRecognizedService extends IntentService {
                     Log.e( "ActivityRecogition", mActivity + ": " + activity.getConfidence() +" type: "+ activity.getType() + " old: "+ Util.oldRecognition + " check : " + !Util.oldRecognition.equals(mActivity) );
                     if( (!Util.oldRecognition.equals(mActivity)) && (activity.getConfidence() >= 50)) {
                         Util.mSendNotification(getApplicationContext(),mActivity);
-                        Util.mSendBroadcast(getApplicationContext(),mActivity);
+                        Util.mSendBroadcast(getApplicationContext(),mActivity,activity.getConfidence());
                         Util.oldRecognition = mActivity;
                     }
                     break;
@@ -69,7 +69,7 @@ public class ActivityRecognizedService extends IntentService {
                     Log.e( "ActivityRecogition", mActivity + ": " + activity.getConfidence() +" type: "+ activity.getType() + " old: "+ Util.oldRecognition + " check : " + !Util.oldRecognition.equals(mActivity) );
                     if( (!Util.oldRecognition.equals(mActivity)) && (activity.getConfidence() >= 50)) {
                         Util.mSendNotification(getApplicationContext(),mActivity);
-                        Util.mSendBroadcast(getApplicationContext(),mActivity);
+                        Util.mSendBroadcast(getApplicationContext(),mActivity,activity.getConfidence());
                         Util.oldRecognition = mActivity;
                     }
                     break;
@@ -79,7 +79,7 @@ public class ActivityRecognizedService extends IntentService {
                     Log.e( "ActivityRecogition", mActivity + ": " + activity.getConfidence() +" type: "+ activity.getType() + " old: "+ Util.oldRecognition + " check : " + !Util.oldRecognition.equals(mActivity) );
                     if( (!Util.oldRecognition.equals(mActivity)) && (activity.getConfidence() >= 50)) {
                         Util.mSendNotification(getApplicationContext(),mActivity);
-                        Util.mSendBroadcast(getApplicationContext(),mActivity);
+                        Util.mSendBroadcast(getApplicationContext(),mActivity,activity.getConfidence());
                         Util.oldRecognition = mActivity;
                     }
                     break;
@@ -91,7 +91,7 @@ public class ActivityRecognizedService extends IntentService {
                     /*
                     if( (!Util.oldRecognition.equals(mActivity)) && (activity.getConfidence() >= 50)) {
                         Util.mSendNotification(getApplicationContext(),mActivity);
-                        Util.mSendBroadcast(getApplicationContext(),mActivity);
+                        Util.mSendBroadcast(getApplicationContext(),mActivity,activity.getConfidence());
                         Util.oldRecognition = mActivity;
                     }
                     */
@@ -102,7 +102,7 @@ public class ActivityRecognizedService extends IntentService {
                     Log.e( "ActivityRecogition", mActivity + ": " + activity.getConfidence() +" type: "+ activity.getType() + " old: "+ Util.oldRecognition + " check : " + !Util.oldRecognition.equals(mActivity) );
                     if( (!Util.oldRecognition.equals(mActivity)) && (activity.getConfidence() >= 50)) {
                         Util.mSendNotification(getApplicationContext(),mActivity);
-                        Util.mSendBroadcast(getApplicationContext(),mActivity);
+                        Util.mSendBroadcast(getApplicationContext(),mActivity,activity.getConfidence());
                         Util.oldRecognition = mActivity;
                     }
                     break;
