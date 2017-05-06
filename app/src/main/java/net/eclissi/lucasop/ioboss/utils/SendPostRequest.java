@@ -37,7 +37,7 @@ public class SendPostRequest extends AsyncTask<String, Context, String> {
 
             JSONObject postDataParams = new JSONObject();
             postDataParams.put("entity_id", entity_id);
-//"input_select.luca_status"
+            //"input_select.luca_status"
             postDataParams.put("option", stato);
 
             Log.e("params",postDataParams.toString());
