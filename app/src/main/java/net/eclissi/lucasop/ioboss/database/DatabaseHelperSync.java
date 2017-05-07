@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by Belal on 1/27/2017.
@@ -22,6 +23,7 @@ public class DatabaseHelperSync extends SQLiteOpenHelper {
     public static final String COLUMN_OPTION = "option";
     public static final String COLUMN_CONFIDENZA = "confidenza";
     public static final String COLUMN_STATUS = "status";
+    public static final String COLUMN_DATATIME2 = "datatime2";
 
 
 
@@ -128,4 +130,32 @@ public class DatabaseHelperSync extends SQLiteOpenHelper {
         Cursor c = db.rawQuery(sql, null);
         return c.getCount();
     }
+
+ /*
+ * this method is for getting all activity time diff n+1
+ *
+ * */
+    public Cursor getDiffRowToDay() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        //String sql = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_STATUS + " = 0;";
+
+        String sql2 = "SELECT q.option, q.datatime, "+
+                "coalesce((select r.datatime  from " + TABLE_NAME + " as r " +
+                        "where r.datatime < q.datatime " +
+                        " order by r.datatime DESC limit 1), q.datatime ) as datatime2 " +
+        "FROM " + TABLE_NAME +" as q WHERE q." + COLUMN_OPTION + " NOT NULL " +
+                " and date(q.datatime / 1000, \"unixepoch\" ) = date(\"now\") and fonte = \"AR\" " +
+        "ORDER BY q.datatime ASC;";
+        Log.d("Blue", "SQL: " + sql2 );
+        Cursor c = db.rawQuery(sql2, null);
+        return c;
+    }
+
+    public Cursor getActivity2() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = "SELECT * FROM " + TABLE_NAME + " ORDER BY " + COLUMN_ID + " ASC;";
+        Cursor c = db.rawQuery(sql, null);
+        return c;
+    }
+
 }
