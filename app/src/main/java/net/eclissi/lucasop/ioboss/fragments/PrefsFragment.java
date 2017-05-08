@@ -136,6 +136,24 @@ public class PrefsFragment extends PreferenceFragment {
             }
         });
 
+        // TODO : entity detect id
+        final EditTextPreference entitydetectID = (EditTextPreference) findPreference("entity_detect_id");
+        final ContentValues  contentValuesED = new ContentValues();
+        entitydetectID.setSummary(entitydetectID.getText());
+        entitydetectID.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue2) {
+                String inputEntityDetectID = (String)newValue2;
+                entitydetectID.setSummary(inputEntityDetectID);
+                contentValuesED.put("PREF_KEY", "entity_detect_id");
+                contentValuesED.put("TITLE", newValue2.toString());
+                contentValuesED.put("SUMMARY", newValue2.toString());
+                Uri uriI =  getContext().getContentResolver().insert(CONTENT_URI, contentValuesED);
+                return true;
+            }
+        });
+
+
         final ListPreference BTentity = (ListPreference) findPreference("bt_bounded");
         final ContentValues  contentValues = new ContentValues();
         BTentity.setSummary(BTentity.getValue().toString());
