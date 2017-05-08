@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -23,6 +24,8 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import net.eclissi.lucasop.ioboss.database.DatabaseHelperSync;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -60,6 +63,18 @@ public class PieChartActivity extends AppCompatActivity  {
 
         dbsync = new DatabaseHelperSync(this);
 
+        String outDB = Environment.getExternalStorageDirectory() + "/DBfile.db3";
+        File currentDB = this.getDatabasePath(DatabaseHelperSync.DB_NAME);
+        Log.d("Blue", "export DB : " + outDB  );
+        Log.d("Blue", "current DB : " + currentDB.toString()  );
+
+        try {
+            dbsync.exportDatabase(outDB);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         mChart = (PieChart) findViewById(R.id.chart);
         mChart.setBackgroundColor(Color.WHITE);
 
@@ -85,11 +100,11 @@ public class PieChartActivity extends AppCompatActivity  {
         mChart.setRotationEnabled(false);
         mChart.setHighlightPerTapEnabled(true);
 
-        mChart.setMaxAngle(270f); // HALF CHART
-        mChart.setRotationAngle(2700f);
+        mChart.setMaxAngle(180f); // HALF CHART
+        mChart.setRotationAngle(1800f);
         mChart.setCenterTextOffset(0, -20);
 
-        setData(7, 100);
+        setData(4, 100);
 
         mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
 
@@ -120,7 +135,11 @@ public class PieChartActivity extends AppCompatActivity  {
 
 
 
-        Cursor cursor = dbsync.getDiffRowToDay();
+        // Cursor cursor = dbsync.getDiffRowToDay();
+
+        Cursor cursor = dbsync.getSumActivityToDay();
+
+
 
         int vStill = 0;
         int vWalking = 0;
@@ -133,10 +152,13 @@ public class PieChartActivity extends AppCompatActivity  {
 
                 //long vID = cursor.getLong(cursor.getColumnIndex(DatabaseHelperSync.COLUMN_ID));
 
+                //String vOption = cursor.getString(cursor.getColumnIndex(DatabaseHelperSync.COLUMN_OPTION));
+                //long vDate = cursor.getLong(cursor.getColumnIndex(DatabaseHelperSync.COLUMN_DATATIME));
+                //long vDate2 = cursor.getLong(cursor.getColumnIndex(DatabaseHelperSync.COLUMN_DATATIME2));
+                //long vDiff = vDate - vDate2 ;
+
                 String vOption = cursor.getString(cursor.getColumnIndex(DatabaseHelperSync.COLUMN_OPTION));
-                long vDate = cursor.getLong(cursor.getColumnIndex(DatabaseHelperSync.COLUMN_DATATIME));
-                long vDate2 = cursor.getLong(cursor.getColumnIndex(DatabaseHelperSync.COLUMN_DATATIME2));
-                long vDiff = vDate - vDate2 ;
+                long vDiff = cursor.getLong(cursor.getColumnIndex(DatabaseHelperSync.COLUMN_SUMDIFF));
 
                 // TODO: sistemare ciclo group by
                 /*
@@ -148,8 +170,10 @@ public class PieChartActivity extends AppCompatActivity  {
 
                     long vID = 0;
                     String vDateDiff = "220";
-                Log.d("Blue", "Chart - ID: " + vID  + " Option: " + vOption + " date : " + vDate + " date2: "+ vDate2 + " datediff: " + vDiff  );
-             } while (cursor.moveToNext());
+                //Log.d("Blue", "Chart - ID: " + vID  + " Option: " + vOption + " date : " + vDate + " date2: "+ vDate2 + " datediff: " + vDiff  );
+                Log.d("Blue", "Chart - ID: " + vID  + " Option: " + vOption  + " datediff: " + vDiff  );
+
+            } while (cursor.moveToNext());
         }
 
 

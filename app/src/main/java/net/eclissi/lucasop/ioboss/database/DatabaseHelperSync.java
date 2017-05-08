@@ -7,10 +7,19 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import net.eclissi.lucasop.ioboss.utils.FileUtils2;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+
 /**
  * Created by Belal on 1/27/2017.
  */
 public class DatabaseHelperSync extends SQLiteOpenHelper {
+
 
     //Constants for Database name, table name, and column names
     public static final String DB_NAME = "ActivityDB";
@@ -24,6 +33,8 @@ public class DatabaseHelperSync extends SQLiteOpenHelper {
     public static final String COLUMN_CONFIDENZA = "confidenza";
     public static final String COLUMN_STATUS = "status";
     public static final String COLUMN_DATATIME2 = "datatime2";
+    public static final String COLUMN_SUMDIFF = "sum_diff";
+    public static final String DB_FILEPATH = "/data/data/net.eclissi.lucasop.ioboss/databases/ActivityDB.s3db";
 
 
 
@@ -151,11 +162,50 @@ public class DatabaseHelperSync extends SQLiteOpenHelper {
         return c;
     }
 
-    public Cursor getActivity2() {
+    /*
+* this method is for getting all activity time diff n+1
+*
+* */
+    public Cursor getSumActivityToDay() {
         SQLiteDatabase db = this.getReadableDatabase();
-        String sql = "SELECT * FROM " + TABLE_NAME + " ORDER BY " + COLUMN_ID + " ASC;";
-        Cursor c = db.rawQuery(sql, null);
+        //String sql = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_STATUS + " = 0;";
+
+        String sql2 = "SELECT q.option, sum (q.datatime - "+
+                "coalesce((select r.datatime  from " + TABLE_NAME + " as r " +
+                "where r.datatime < q.datatime " +
+                " order by r.datatime DESC limit 1), q.datatime ) ) as sum_diff " +
+                "FROM " + TABLE_NAME +" as q WHERE q." + COLUMN_OPTION + " NOT NULL " +
+                " and date(q.datatime / 1000, \"unixepoch\" ) = date(\"now\") and fonte = \"AR\" " +
+                " GROUP BY q.option " +
+                "ORDER BY q.datatime ASC;";
+        Log.d("Blue", "SQL: " + sql2 );
+        Cursor c = db.rawQuery(sql2, null);
         return c;
     }
 
+
+    /**
+     * Copies the database file at the specified location over the current
+     * internal application database.
+     * */
+    public boolean exportDatabase(String dbPath) throws IOException {
+
+        // Close the SQLiteOpenHelper so it will commit the created empty
+        // database to internal storage.
+        close();
+        File newDb = new File(dbPath);
+        File oldDB = new File("/data/user/0/net.eclissi.lucasop.ioboss/databases/ActivityDB");
+        //File oldDb = new File(DB_FILEPATH);
+        if (oldDB.exists()) {
+            FileUtils2.copyFile(new FileInputStream(oldDB), new FileOutputStream(newDb));
+            // Access the copied database so SQLiteHelper will cache it and mark
+            // it as created.
+            getWritableDatabase().close();
+            return true;
+        }
+        return false;
+    }
+
 }
+
+
