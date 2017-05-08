@@ -101,7 +101,7 @@ public class PieChartActivity extends AppCompatActivity  {
         mChart.setHighlightPerTapEnabled(true);
 
         mChart.setMaxAngle(180f); // HALF CHART
-        mChart.setRotationAngle(1800f);
+        mChart.setRotationAngle(180f);
         mChart.setCenterTextOffset(0, -20);
 
         setData(4, 100);
