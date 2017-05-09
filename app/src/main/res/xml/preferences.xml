@@ -35,6 +35,13 @@
             android:title="Entity_id"
             android:key="entity_id"
             android:summary="entity" />
+        <EditTextPreference
+            android:defaultValue="Default value"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Entity_Detect_id"
+            android:key="entity_detect_id"
+            android:summary="entity" />
     </PreferenceCategory>
     <ListPreference
         android:defaultValue="1"
