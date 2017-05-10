@@ -36,10 +36,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public RecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View itemLayoutView = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.item_raw_material, null);
+                //R.layout.item_raw_material, null);
+                R.layout.item_raw, null);
 
         // create ViewHolder
-
         ViewHolder viewHolder = new ViewHolder(itemLayoutView);
         return viewHolder;
     }
@@ -59,7 +59,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.coordinate.setText(dbList.get(position).getCoordinate());
         holder.tipo.setText(dbList.get(position).getTipo());
 
-
+/*
+tipo: IN, OUT, DWELL
+stato: zona attiva/disattiva
+ */
 
        // holder.img.setImageDrawable(RecyclerAdapter.context.getResources().getDrawable(R.drawable.ic_place_in, RecyclerAdapter.context.getTheme()));
 
@@ -78,6 +81,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 holder.img.setImageDrawable(RecyclerAdapter.context.getResources().getDrawable(R.drawable.ic_place_dwell, RecyclerAdapter.context.getTheme()));
                 break;
         }
+
+        switch (holder.stato.getText().toString()){
+            case "0":
+                 holder.sepv.setBackgroundColor(RecyclerAdapter.context.getResources().getColor( R.color.cardview_shadow_start_color));
+                break;
+            case "1":
+                holder.sepv.setBackgroundColor(RecyclerAdapter.context.getResources().getColor( R.color.light_red));
+                 break;
+         }
     }
 
 
@@ -94,7 +106,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView dbID,stato,zonaID, name, address,coordinate,tipo,rag;
+        public TextView dbID,stato,zonaID, name, address,coordinate,tipo,rag, sepv;
         public ImageView img;
         public ViewHolder(View itemLayoutView) {
             super(itemLayoutView);
@@ -107,13 +119,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             tipo = (TextView)itemLayoutView.findViewById(R.id.rvtipo);
             rag = (TextView)itemLayoutView.findViewById(R.id.rvraggio);
             img = (ImageView)itemLayoutView.findViewById(R.id.ic_row_place);
-
+            sepv = (TextView)itemLayoutView.findViewById(R.id.separaV);
 
             itemLayoutView.setOnClickListener(this);
-
         }
-
-
 
         @Override
         public void onClick(View v) {
