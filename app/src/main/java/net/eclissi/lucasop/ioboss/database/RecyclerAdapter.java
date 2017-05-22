@@ -154,13 +154,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             holder.itemView.setBackgroundColor(Color.WHITE);
 
             holder.stato.setVisibility(View.VISIBLE);
-            holder.zonaID.setTextColor(Color.BLACK);
-            holder.name.setTextColor(Color.BLACK);
-            holder.address.setTextColor(Color.BLACK);
-            holder.coordinate.setTextColor(Color.BLACK);
-            holder.tipo.setTextColor(Color.BLACK);
-            holder.rag.setTextColor(Color.BLACK);
-            holder.ragT.setTextColor(Color.BLACK);
+            holder.zonaID.setTextColor(Color.DKGRAY);
+            holder.name.setTextColor(Color.GRAY);
+            holder.address.setTextColor(Color.GRAY);
+            holder.coordinate.setTextColor(Color.GRAY);
+            holder.tipo.setTextColor(Color.GRAY);
+            holder.rag.setTextColor(Color.GRAY);
+            holder.ragT.setTextColor(Color.GRAY);
             holder.img.setVisibility(View.VISIBLE);
             holder.edit.setVisibility(View.VISIBLE);
             holder.sepv.setBackgroundColor(Color.WHITE);
@@ -183,7 +183,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                     }
                 });
 
-            
+
 
 
 
@@ -211,7 +211,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 case "IN":
                     if ( holder.stato.getText().toString().equals("1") ) {
                         holder.img.setImageDrawable(RecyclerAdapter.context.getResources().getDrawable(R.drawable.ic_place_in_v, RecyclerAdapter.context.getTheme()));
-                        holder.img.setColorFilter(Color.BLACK);
+                        holder.img.setColorFilter(Color.DKGRAY);
                     } else {
                         holder.img.setImageDrawable(RecyclerAdapter.context.getResources().getDrawable(R.drawable.ic_place_in_v, RecyclerAdapter.context.getTheme()));
                         holder.img.setColorFilter(Color.LTGRAY);
@@ -220,7 +220,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 case "OUT":
                     if ( holder.stato.getText().toString().equals("1") ) {
                         holder.img.setImageDrawable(RecyclerAdapter.context.getResources().getDrawable(R.drawable.ic_place_out_v, RecyclerAdapter.context.getTheme()));
-                        holder.img.setColorFilter(Color.BLACK);
+                        holder.img.setColorFilter(Color.DKGRAY);
                     }else {
                         holder.img.setImageDrawable(RecyclerAdapter.context.getResources().getDrawable(R.drawable.ic_place_out_v, RecyclerAdapter.context.getTheme()));
                         holder.img.setColorFilter(Color.LTGRAY);
@@ -229,7 +229,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 case "DWELL":
                     if ( holder.stato.getText().toString().equals("1") ) {
                         holder.img.setImageDrawable(RecyclerAdapter.context.getResources().getDrawable(R.drawable.ic_place_dwell_v, RecyclerAdapter.context.getTheme()));
-                        holder.img.setColorFilter(Color.BLACK);
+                        holder.img.setColorFilter(Color.DKGRAY);
                     }else {
                         holder.img.setImageDrawable(RecyclerAdapter.context.getResources().getDrawable(R.drawable.ic_place_dwell_v, RecyclerAdapter.context.getTheme()));
                         holder.img.setColorFilter(Color.LTGRAY);
