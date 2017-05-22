@@ -1,0 +1,63 @@
+       mRecyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(getApplicationContext(), mRecyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+
+                    @Override public void onLongItemClick (View view, int position) {
+
+                        /* test preferenceFragment
+                        Log.i("Blue", "press");
+                        Intent intent = new Intent(PlacePickerActivity.this, EditGeoFenceActivity.class);
+                        startActivity(intent);
+                        */
+
+                        String  name =((TextView)view.findViewById(R.id.rvname)).getText().toString();
+                        String  maddress =((TextView)view.findViewById(R.id.rvaddress)).getText().toString();
+                        String  coordinate =((TextView)view.findViewById(R.id.rvcoordinate)).getText().toString();
+                        String  tipo =((TextView)view.findViewById(R.id.rvzonaID)).getText().toString();
+                        String  dbID =((TextView)view.findViewById(R.id.rvdbID)).getText().toString();
+                        String stato =((TextView)view.findViewById(R.id.rvstato)).getText().toString();
+                        String  raggioT =((TextView)view.findViewById(R.id.rvraggio)).getText().toString();
+                        int rag = Integer.parseInt(raggioT);
+                        String  zonaID=((TextView)view.findViewById(R.id.rvzonaID)).getText().toString();
+
+                        Intent i = new Intent(PlacePickerActivity.this, UpdateActivity.class);
+
+                        i.putExtra("stato", stato);
+                        i.putExtra("zonaID", zonaID);
+                        i.putExtra("nome", name);
+                        i.putExtra("indirizzo", maddress);
+                        i.putExtra("coordinate", coordinate);
+                        i.putExtra("tipo", tipo);
+                        i.putExtra("rag", rag);
+                        i.putExtra("dbID", dbID);
+                        i.putExtra("cvID", position);
+
+                        Log.i("Blue", "PlacePicker stato send [String]: " + stato);
+
+                        //startActivity(i);
+                        startActivityForResult(i, UPDATE_GEO_REQUEST);
+
+                        // do whatever
+                    }
+
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        //dbList.remove(position);
+                        //mAdapter.notifyDataSetChanged();
+                        //TextView id2 =(TextView)view.findViewById(R.id.rvkey_id);
+                        //String tvValue = id2.getText().toString();
+                        //helpher.deleteARow(tvValue);
+
+                        // test fragment
+                        //getFragmentManager().beginTransaction().replace(R.id.content_main,
+                        //        new BlankFragment()).commit();
+
+                        // test dialog fragment
+                        //FragmentManager fm = getFragmentManager();
+                        //EditNameDialogFragment editNameDialogFragment = EditNameDialogFragment.newIstance("Edit geoFence");
+                        //editNameDialogFragment.show(fm,"fragment_edit_name");
+
+
+                        Log.i("Blue", "onItemClick");
+                    }
+                })
+        );

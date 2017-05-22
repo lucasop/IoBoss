@@ -141,7 +141,7 @@ recupero dal content provider della EntityID di detaction
             }
         }
         c5.close();
-        Log.i("BlueRemote","BR pref mApiPass #-" + mEntityDetect + "-#");
+        Log.i("BlueRemote","BR pref mEntityDetect #-" + mEntityDetect + "-#");
 
 
 
@@ -227,7 +227,7 @@ recupero dal content provider della EntityID di detaction
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    idAdd = dbsync.addActivity("AR", System.currentTimeMillis(), "", mEntity, pass, mConfidenza, 0 );
+                    idAdd = dbsync.addActivity("AR", System.currentTimeMillis(), "", mEntityDetect, pass, mConfidenza, 0 );
                     Log.d(TAG ,"Volley RECOGNIZE ID: " + idAdd + " - " + pass );
 
                     // trasmetto solamente se la coda di sincronizzazione è vuota

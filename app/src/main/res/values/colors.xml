@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#303F9F</color>
     <color name="light_red">#d28a8a</color>
+    <color name="swipebg">#cc3333</color>
+    <color name="mygrey">#f1f1f1</color>
+
 </resources>

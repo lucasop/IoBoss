@@ -20,7 +20,7 @@
         android:layout_alignBottom="@+id/lg_zonaID"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/lg_textgeo"
-        app:srcCompat="@drawable/ic_place_in" />
+        app:srcCompat="@drawable/ic_place_in_v" />
 
     <Switch
         android:id="@+id/lg_switch"

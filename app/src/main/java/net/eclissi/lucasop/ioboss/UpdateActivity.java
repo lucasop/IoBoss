@@ -100,15 +100,15 @@ public class UpdateActivity extends AppCompatActivity {
                 switch (index){
                     case 0:
                         //Log.i("Blue", "checked: IN 0");
-                        imgFp.setImageDrawable(getResources().getDrawable(R.drawable.ic_place_in, getApplicationContext().getTheme()));
+                        imgFp.setImageDrawable(getResources().getDrawable(R.drawable.ic_place_in_v, getApplicationContext().getTheme()));
                         break;
                     case 1:
                         //Log.i("Blue", "checked: IN 1");
-                        imgFp.setImageDrawable(getResources().getDrawable(R.drawable.ic_place_out, getApplicationContext().getTheme()));
+                        imgFp.setImageDrawable(getResources().getDrawable(R.drawable.ic_place_out_v, getApplicationContext().getTheme()));
                         break;
                     case 2:
                         //Log.i("Blue", "checked: DWELL 2");
-                        imgFp.setImageDrawable(getResources().getDrawable(R.drawable.ic_place_dwell, getApplicationContext().getTheme()));
+                        imgFp.setImageDrawable(getResources().getDrawable(R.drawable.ic_place_dwell_v, getApplicationContext().getTheme()));
                         break;
                 }
 
@@ -155,18 +155,18 @@ public class UpdateActivity extends AppCompatActivity {
 
                 case "IN":
                     Log.i("Blue", "start: IN 0");
-                    imgFp.setImageDrawable(getResources().getDrawable(R.drawable.ic_place_in, getApplicationContext().getTheme()));
+                    imgFp.setImageDrawable(getResources().getDrawable(R.drawable.ic_place_in_v, getApplicationContext().getTheme()));
                     ((RadioButton)findViewById(R.id.lg_in)).setChecked(true);
                     break;
                 case "OUT":
                     Log.i("Blue", "start: IN 1");
-                    imgFp.setImageDrawable(getResources().getDrawable(R.drawable.ic_place_out, getApplicationContext().getTheme()));
+                    imgFp.setImageDrawable(getResources().getDrawable(R.drawable.ic_place_out_v, getApplicationContext().getTheme()));
                     ((RadioButton)findViewById(R.id.lg_out)).setChecked(true);
 
                     break;
                 case "DWELL":
                     Log.i("Blue", "start: DWELL 2");
-                    imgFp.setImageDrawable(getResources().getDrawable(R.drawable.ic_place_dwell, getApplicationContext().getTheme()));
+                    imgFp.setImageDrawable(getResources().getDrawable(R.drawable.ic_place_dwell_v, getApplicationContext().getTheme()));
                     ((RadioButton)findViewById(R.id.lg_dwell)).setChecked(true);
                     break;
 

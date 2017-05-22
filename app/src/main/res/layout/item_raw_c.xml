@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:visibility="visible"
+    card_view:cardCornerRadius="2dp"
+    card_view:cardElevation="5dp"
+    card_view:cardUseCompatPadding="true">
+
+
+    <TextView
+        android:id="@+id/separaV"
+        android:layout_width="6dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/common_google_signin_btn_text_dark_disabled"
+        card_view:layout_constraintLeft_toLeftOf="parent"
+        card_view:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_absoluteHeight="30dp"
+        tools:layout_conversion_absoluteWidth="6dp"
+        tools:layout_conversion_absoluteX="5dp"
+        tools:layout_conversion_absoluteY="81dp"
+        card_view:layout_constraintBottom_toBottomOf="@+id/rvzonaID"
+        android:layout_marginBottom="0dp" />
+
+    <TextView
+        android:id="@+id/rvzonaID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="BASKET BOLZANO"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        card_view:layout_constraintLeft_toRightOf="@+id/separaV"
+        card_view:layout_constraintTop_toTopOf="@+id/separaV"
+        tools:layout_conversion_absoluteHeight="30dp"
+        tools:layout_conversion_absoluteWidth="392dp"
+        tools:layout_conversion_absoluteX="13dp"
+        tools:layout_conversion_absoluteY="81dp" />
+
+    <Button
+        android:id="@+id/undo_button"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:layout_width="94dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/button_undo"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        card_view:layout_constraintBottom_toBottomOf="parent"
+        card_view:layout_constraintRight_toRightOf="parent"
+        card_view:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ic_row_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        card_view:layout_constraintRight_toLeftOf="@+id/icEdit"
+        card_view:srcCompat="@drawable/ic_place_dwell_v"
+        card_view:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <ImageView
+        android:id="@+id/icEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="0dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        card_view:layout_constraintRight_toRightOf="parent"
+        card_view:layout_constraintTop_toTopOf="@+id/ic_row_place"
+        card_view:srcCompat="@drawable/ic_dots_vertical" />
+
+    <TextView
+        android:id="@+id/rvname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="NOME"
+        android:textColor="@android:color/black"
+        card_view:layout_constraintLeft_toLeftOf="@+id/rvzonaID"
+        card_view:layout_constraintTop_toBottomOf="@+id/rvzonaID" />
+
+    <TextView
+        android:id="@+id/rvaddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Via Napoli, 12"
+        android:textColor="@android:color/black"
+        card_view:layout_constraintLeft_toLeftOf="@+id/rvname"
+        card_view:layout_constraintTop_toBottomOf="@+id/rvname" />
+
+    <TextView
+        android:id="@+id/rvcoordinate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="46.00000, 11.00000"
+        android:textColor="@android:color/black"
+        android:textStyle="italic"
+        card_view:layout_constraintLeft_toLeftOf="@+id/rvaddress"
+        card_view:layout_constraintTop_toBottomOf="@+id/rvaddress" />
+
+    <TextView
+        android:id="@+id/rvstato"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="0dp"
+        android:textColor="@android:color/black"
+        card_view:layout_constraintLeft_toRightOf="@+id/rvname"
+        card_view:layout_constraintTop_toTopOf="@+id/rvname" />
+
+    <TextView
+        android:id="@+id/rvraggio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:text="100"
+        android:textColor="@android:color/black"
+        android:textStyle="italic"
+        card_view:layout_constraintLeft_toRightOf="@+id/rvcoordinate"
+        card_view:layout_constraintTop_toTopOf="@+id/rvcoordinate" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:text="metri"
+        android:textColor="@android:color/black"
+        card_view:layout_constraintBottom_toBottomOf="@+id/rvraggio"
+        card_view:layout_constraintLeft_toRightOf="@+id/rvraggio"
+        card_view:layout_constraintTop_toTopOf="@+id/rvraggio"
+        card_view:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/rvtipo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:textColor="@android:color/black"
+        card_view:layout_constraintLeft_toRightOf="@+id/rvstato"
+        card_view:layout_constraintTop_toTopOf="@+id/rvstato" />
+
+    <TextView
+        android:id="@+id/rvdbID"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:textColor="@android:color/black"
+        card_view:layout_constraintLeft_toRightOf="@+id/rvtipo"
+        card_view:layout_constraintTop_toTopOf="@+id/rvtipo" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:background="#80000000"
+        card_view:layout_constraintHorizontal_bias="0.0"
+        card_view:layout_constraintLeft_toLeftOf="parent"
+        card_view:layout_constraintRight_toRightOf="parent"
+        card_view:layout_constraintTop_toBottomOf="@+id/rvcoordinate" />
+
+
+</android.support.constraint.ConstraintLayout>
