@@ -180,9 +180,8 @@ public class PlacePickerActivity extends AppCompatActivity  {
             // implementazione undo
             private void init() {
                 background = new ColorDrawable(Color.LTGRAY);
-
-
-                xMark = ContextCompat.getDrawable(PlacePickerActivity.this, R.drawable.ic_clear_24dp);
+                
+                xMark = ContextCompat.getDrawable(PlacePickerActivity.this, R.drawable.ic_undo_black_24px);
                 xMark.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
                 xMarkMargin = (int) PlacePickerActivity.this.getResources().getDimension(R.dimen.ic_clear_margin);
 
