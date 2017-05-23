@@ -172,12 +172,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
             //Log.i("###2", "CLASS: "+ this.getClass().getSuperclass().getSimpleName());
 
-
-
                 holder.edit.setOnClickListener(new View.OnClickListener() {
-                    @Override
+                     @Override
                     public void onClick(View v) {
-                        showPopup(v, position);
+                        // visualizza popup menu
+                         showPopup(v, position);
                         //mOnItemClickListener.onItemClick(v , position);
                         Log.i("###", "UPDATE IMAGE onClick position: "+position);
                     }

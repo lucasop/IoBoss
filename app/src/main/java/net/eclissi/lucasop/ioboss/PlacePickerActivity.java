@@ -1,5 +1,6 @@
 package net.eclissi.lucasop.ioboss;
 
+import android.animation.Animator;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -18,6 +19,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -43,6 +45,12 @@ public class PlacePickerActivity extends AppCompatActivity  {
     private ItemTouchHelper mItemTouchHelper;
     public static final float ALPHA_FULL = 1.0f;
 
+    // float icon
+
+    FloatingActionButton fab, fab1, fab2, fab3;
+    LinearLayout fabLayout1, fabLayout2, fabLayout3;
+    View fabBGLayout;
+    boolean isFABOpen=false;
 
     DatabaseHelpher helpher;
     List<DatabaseModel> dbList;
@@ -70,6 +78,35 @@ public class PlacePickerActivity extends AppCompatActivity  {
         //setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Places");
 
+        // float icon
+        fabLayout1= (LinearLayout) findViewById(R.id.fabLayout1);
+        fabLayout2= (LinearLayout) findViewById(R.id.fabLayout2);
+        fabLayout3= (LinearLayout) findViewById(R.id.fabLayout3);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab1 = (FloatingActionButton) findViewById(R.id.pickerButton);
+        fab2= (FloatingActionButton) findViewById(R.id.fab2);
+        fab3 = (FloatingActionButton) findViewById(R.id.fab3);
+        fabBGLayout=findViewById(R.id.fabBGLayout);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!isFABOpen){
+                    showFABMenu();
+                }else{
+                    closeFABMenu();
+                }
+            }
+        });
+
+        fabBGLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                closeFABMenu();
+            }
+        });
+
+        // helper
         String filtro = "1' or stato ='0";
 
         helpher = new DatabaseHelpher(this);
@@ -433,9 +470,63 @@ public class PlacePickerActivity extends AppCompatActivity  {
         });
     }
 
+// float ico
 
+    private void showFABMenu(){
+        isFABOpen=true;
+        fabLayout1.setVisibility(View.VISIBLE);
+        fabLayout2.setVisibility(View.VISIBLE);
+        fabLayout3.setVisibility(View.VISIBLE);
+        fabBGLayout.setVisibility(View.VISIBLE);
 
+        fab.animate().rotationBy(225);
+        fabLayout1.animate().translationY(-getResources().getDimension(R.dimen.standard_55));
+        fabLayout2.animate().translationY(-getResources().getDimension(R.dimen.standard_100));
+        fabLayout3.animate().translationY(-getResources().getDimension(R.dimen.standard_145));
+    }
 
+    private void closeFABMenu(){
+        isFABOpen=false;
+        fabBGLayout.setVisibility(View.GONE);
+        fab.animate().rotationBy(-225);
+        fabLayout1.animate().translationY(0);
+        fabLayout2.animate().translationY(0);
+        fabLayout3.animate().translationY(0).setListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                if(!isFABOpen){
+                    fabLayout1.setVisibility(View.GONE);
+                    fabLayout2.setVisibility(View.GONE);
+                    fabLayout3.setVisibility(View.GONE);
+                }
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(isFABOpen){
+            closeFABMenu();
+        }else{
+            super.onBackPressed();
+        }
+    }
 }
 
 
