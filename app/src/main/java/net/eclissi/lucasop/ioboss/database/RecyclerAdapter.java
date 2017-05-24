@@ -1,6 +1,7 @@
 package net.eclissi.lucasop.ioboss.database;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.widget.PopupMenu;
@@ -20,6 +21,7 @@ import net.eclissi.lucasop.ioboss.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by user_adnig on 11/14/15.
@@ -113,7 +115,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
 
     @Override
-    public void onBindViewHolder(RecyclerAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final RecyclerAdapter.ViewHolder holder, final int position) {
 
         final String item = Integer.toString(holder.getAdapterPosition());
         if (itemsPendingRemoval.contains(item)) {
@@ -176,7 +178,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                      @Override
                     public void onClick(View v) {
                         // visualizza popup menu
-                         showPopup(v, position);
+                         showPopup(v, position, holder);
                         //mOnItemClickListener.onItemClick(v , position);
                         Log.i("###", "UPDATE IMAGE onClick position: "+position);
                     }
@@ -293,7 +295,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     }
 
-    private void showPopup( final View view, final int position){
+    private void showPopup( final View view, final int position, final RecyclerAdapter.ViewHolder holder){
         // pass the imageview id
         View menuItemView = view.findViewById(R.id.icEdit);
         PopupMenu popup = new PopupMenu(RecyclerAdapter.context, menuItemView);
@@ -307,9 +309,43 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.cvedit:
-                        // do what you need.
+                        // richiama l'activity del edit della scheda.
                         mOnItemClickListener.onItemClick(view , position);
                         break;
+                    case R.id.cvshare:
+                        // condivide la scheda.
+
+                        String message = holder.zonaID.getText().toString();
+                        //message += holder.name.getText().toString() +"\n";
+                        //message += holder.address.getText().toString() +"\n";
+                        //String uriMessage = "http://maps.google.com/maps?qsaddr=" + holder.coordinate.getText().toString();
+
+                        String mCoordinate = holder.coordinate.getText().toString();
+                        String[] separateCoordinate = mCoordinate.split(",");
+
+                        double mLat = Double.parseDouble(separateCoordinate[0]);
+                        double mLon = Double.parseDouble(separateCoordinate[1]);
+
+
+
+                        //String uriMessage = String.format(Locale.ENGLISH, "geo:%f,%f",mLat, mLon );
+                        String uriMessage = "http://maps.google.com/maps?q=loc:" + String.format(Locale.ENGLISH, "%f,%f",mLat, mLon );
+                        Log.i("###", "mLat: "+mLat);
+                        Log.i("###", "mLon: "+mLon);
+                        Log.i("###", "Uri Geo: "+ (uriMessage));
+
+
+
+                        Intent share = new Intent(Intent.ACTION_SEND);
+                        share.setType("text/plain");
+                        share.putExtra(Intent.EXTRA_SUBJECT, message);
+                        share.putExtra(Intent.EXTRA_TEXT, uriMessage);
+
+
+                        context.startActivity(Intent.createChooser(share, "Condividi Place"));
+                        break;
+
+
                     default:
                         return false;
                 }
@@ -318,5 +354,5 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         });
         popup.show();
     }
-
-}
+    
+} // fine classe RecycledAdapter

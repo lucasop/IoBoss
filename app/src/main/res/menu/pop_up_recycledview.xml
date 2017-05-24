@@ -7,6 +7,11 @@
         android:id="@+id/cvedit"
         android:icon="@android:drawable/ic_menu_edit"
         android:title="edit"
+
+    <item
+        android:id="@+id/cvshare"
+        android:icon="@android:drawable/ic_menu_share"
+        android:title="Condividi"
         app:showAsAction="ifRoom|withText" />
 
 </menu>
