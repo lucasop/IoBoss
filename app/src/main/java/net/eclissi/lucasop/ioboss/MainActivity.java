@@ -27,9 +27,12 @@ import net.eclissi.lucasop.ioboss.database.DatabaseModel;
 import net.eclissi.lucasop.ioboss.database.RecyclerAdapter;
 import net.eclissi.lucasop.ioboss.services.ARService;
 
-
 import java.util.ArrayList;
 import java.util.List;
+
+/*
+v0.1.0 branch maggio
+ */
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, SearchView.OnQueryTextListener {
