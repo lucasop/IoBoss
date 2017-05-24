@@ -27,6 +27,7 @@ import net.eclissi.lucasop.ioboss.database.DatabaseModel;
 import net.eclissi.lucasop.ioboss.database.RecyclerAdapter;
 import net.eclissi.lucasop.ioboss.services.ARService;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity
     RecyclerView mRecyclerView;
     RecyclerView.Adapter mAdapter;
     RecyclerView.LayoutManager mLayoutManager;
+
 
 
 
@@ -114,7 +116,15 @@ public class MainActivity extends AppCompatActivity
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new RecyclerAdapter(this,dbList);
+        mAdapter = new RecyclerAdapter(this,dbList,new RecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Log.i("###", "Main CALLBACK UPDATE IMAGE onClick");
+            }
+        });
+
+
+
         mRecyclerView.setAdapter(mAdapter);
 
 
@@ -223,6 +233,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
+            Intent intent = new Intent(MainActivity.this, PieChartActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_manage) {
             Intent intent = new Intent(MainActivity.this, PreferenceActivity.class);

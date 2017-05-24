@@ -8,44 +8,40 @@
     card_view:cardElevation="5dp"
     card_view:cardUseCompatPadding="true">
 
+
+    <Button
+        android:id="@+id/undo_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_undo"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:layout_gravity="end|center_vertical"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <ImageView
             android:id="@+id/ic_row_place"
-            android:layout_width="48dp"
+            android:layout_width="42dp"
             android:layout_height="54dp"
-            android:paddingLeft="-8dp"
-            card_view:srcCompat="@drawable/ic_action_places"
             android:layout_above="@+id/rvzonaID"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/separaV" />
-
-        <TextView
-            android:id="@+id/rvzonaID"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_below="@+id/tableLayout"
-            android:layout_marginBottom="4dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_toEndOf="@+id/separaH"
-            android:background="#f1f1f1"
-            android:paddingStart="4dp"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:paddingLeft="0dp" />
 
         <TextView
             android:id="@+id/separaV"
             android:layout_width="6dp"
-            android:layout_height="48dp"
+            android:layout_height="10dp"
             android:layout_alignBottom="@+id/rvzonaID"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            android:background="@android:color/holo_red_dark" />
+            android:layout_below="@+id/ic_row_place"
+            android:background="@color/common_google_signin_btn_text_dark_disabled" />
 
         <TextView
             android:id="@+id/separaH"
@@ -53,6 +49,32 @@
             android:layout_height="30dp"
             android:layout_below="@+id/ic_row_place"
             android:layout_toEndOf="@+id/separaV" />
+
+        <TextView
+            android:id="@+id/rvzonaID"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@+id/tableLayout"
+            android:layout_marginLeft="0dp"
+            android:layout_toEndOf="@+id/separaH"
+            android:background="#f1f1f1"
+            android:gravity="left|center"
+            android:paddingStart="4dp"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/icEdit"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/tableLayout"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            card_view:srcCompat="@android:drawable/ic_menu_edit" />
 
         <TableLayout
             android:id="@+id/tableLayout"
@@ -75,7 +97,9 @@
                     android:textColor="@android:color/black" />
             </TableRow>
 
-            <TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/rvname"
@@ -85,7 +109,9 @@
             </TableRow>
 
 
-            <TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/rvaddress"
@@ -95,7 +121,9 @@
             </TableRow>
 
 
-            <TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/rvcoordinate"
@@ -144,6 +172,7 @@
                     android:textColor="@android:color/black" />
             </TableRow>
         </TableLayout>
+
 
     </RelativeLayout>
 

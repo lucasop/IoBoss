@@ -58,17 +58,22 @@ public class MyReceiver extends BroadcastReceiver {
 
         String mBTdb = "";
         String mEntity = "";
+        String mEntityDetect = "";
         String mApiPass = "";
         String key_col = "PREF_KEY=?";
         String[] key_bt = {"bt_bounded"};
         String[] key_entity = {"entity_id"};
+        String[] key_entity_detect = {"entity_detect_id"}; //c5
         String[] key_apipass = {"api_pass"};
+
 
 
 
         intent.getAction();
 
-
+/*
+recupero dal content provider del device BT
+ */
         Cursor c2 = context.getContentResolver().query(CONTENT_URI , new String[]{"PREF_KEY, TITLE"}, key_col, key_bt, null );
         Log.i("BlueRemote", "MyReciver cursor c2 " + c2.getCount() + "/" + c2.getColumnCount());
         if (c2 == null){
@@ -84,7 +89,9 @@ public class MyReceiver extends BroadcastReceiver {
         c2.close();
         Log.i("BlueRemote","BR pref mBTdb #-" + mBTdb + "-#");
 
-
+/*
+recupero dal content provider della EntityID
+ */
         Cursor c3 = context.getContentResolver().query(CONTENT_URI, new String[]{"PREF_KEY, TITLE"}, "PREF_KEY=?", key_entity, null );
         Log.i("BlueRemote", "MyReciver cursor c3 " + c3.getCount() + "/" + c3.getColumnCount());
         if (c3 == null){
@@ -100,7 +107,9 @@ public class MyReceiver extends BroadcastReceiver {
         c3.close();
         Log.i("BlueRemote","BR pref mEntity #-" + mEntity + "-#");
 
-
+/*
+recupero dal content provider della password
+ */
         Cursor c4 = context.getContentResolver().query(CONTENT_URI, new String[]{"PREF_KEY, TITLE"}, "PREF_KEY=?", key_apipass, null );
         Log.i("BlueRemote", "MyReciver cursor c4 " + c4.getCount() + "/" + c4.getColumnCount());
         if (c4 == null){
@@ -115,6 +124,26 @@ public class MyReceiver extends BroadcastReceiver {
         }
         c4.close();
         Log.i("BlueRemote","BR pref mApiPass #-" + mApiPass + "-#");
+
+   /*
+recupero dal content provider della EntityID di detaction
+ */
+        Cursor c5 = context.getContentResolver().query(CONTENT_URI, new String[]{"PREF_KEY, TITLE"}, "PREF_KEY=?", key_entity_detect, null );
+        Log.i("BlueRemote", "MyReciver cursor c5 " + c5.getCount() + "/" + c5.getColumnCount());
+        if (c5 == null){
+            Log.i("BlueRemote", "MyReciver cursor c5 null");
+        }else if (c5.getCount() < 1){
+            Log.i("BlueRemote", "MyReciver cursor c5 0");
+        }else{
+            while (c5.moveToNext()){
+                Log.i("BlueRemote", "MyReciver cursor  c5 | " + c5.getString(0)+ " | " + c5.getString(1));
+                mEntityDetect = c5.getString(1);
+            }
+        }
+        c5.close();
+        Log.i("BlueRemote","BR pref mEntityDetect #-" + mEntityDetect + "-#");
+
+
 
 
 
@@ -187,18 +216,18 @@ public class MyReceiver extends BroadcastReceiver {
                     //Log.d(TAG ,"Volley RECOGNIZE : "+ extra.get(key));
                     String pass = extra.get(Constants.EXTRA_OPTION).toString();
                     int mConfidenza = extra.getInt(Constants.AR_EXTRA_CONFIDENZA);
-                    mEntity = "input_select.luca_detected";
+                    //mEntity = "input_select.luca_detected";
 
                     JSONObject sendObj = null;
                     try {
                         sendObj = new JSONObject();
-                        sendObj.put("entity_id", mEntity);
+                        sendObj.put("entity_id", mEntityDetect);
                         sendObj.put("option", pass);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    idAdd = dbsync.addActivity("AR", System.currentTimeMillis(), "", mEntity, pass, mConfidenza, 0 );
+                    idAdd = dbsync.addActivity("AR", System.currentTimeMillis(), "", mEntityDetect, pass, mConfidenza, 0 );
                     Log.d(TAG ,"Volley RECOGNIZE ID: " + idAdd + " - " + pass );
 
                     // trasmetto solamente se la coda di sincronizzazione è vuota

@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="net.eclissi.lucasop.ioboss.MainActivity"
-    tools:showIn="@layout/app_bar_main">
+    >
 
 
     <FrameLayout
@@ -20,16 +20,13 @@
         android:layout_alignParentTop="true">
 
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycleviewMain"
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/chart"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/toolbar"
-            android:clipToPadding="false"
-            android:paddingBottom="80dp"
-            android:scrollbars="vertical">
+            android:layout_height="match_parent" />
 
-        </android.support.v7.widget.RecyclerView>
+
 
     </FrameLayout>
+
 </RelativeLayout>
