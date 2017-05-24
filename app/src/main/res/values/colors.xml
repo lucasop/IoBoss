@@ -7,5 +7,6 @@
     <color name="swipebg">#cc3333</color>
     <color name="mygrey">#f1f1f1</color>
     <color name="colorTransBg">#60000000</color>
+    <color name="common_border_color">#80000000</color>
 
 </resources>
